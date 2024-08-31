@@ -19,7 +19,9 @@ album/single.
 ```
 
 If a page has more than 16 albums/singles, only the first 16 are rendered
-server-side and `#music-grid` will have a `data-client-items` attribute containing JSON data for all of the items that is used to populate the page dynamically client-side.
+server-side and `#music-grid` will have a `data-client-items` attribute
+containing JSON data for all of the items that is used to populate the page
+dynamically client-side.
 
 ```json
 [
@@ -29,4 +31,32 @@ server-side and `#music-grid` will have a `data-client-items` attribute containi
   },
   ...
 ]
+```
+## Album Pages
+
+Album pages take to form of `https://{band}.bandcamp.com/album/{album}`. There
+is a `<script>` with an attribute `data-tralbum` that contains JSON data for
+each track including a link to the MP3 file.
+
+Note that on albums with multiple artists, the `artist` fields under `trackinfo`
+might take the form of "Artist - Title".
+
+```json
+{
+  "artist": "album artist",
+  "album_release_date": "01 Jan 2000 00:00:00 GMT",
+  "trackinfo": [
+    {
+      "file": {
+        "mp3-128": "https://t4.bcbits.com/stream/deadbeef"
+      },
+      "artist": "track artist",
+      "title": "track title",
+      "track_num": 1,
+      ...
+    },
+    ...
+  ],
+  ...
+}
 ```
